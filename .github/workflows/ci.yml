@@ -32,6 +32,21 @@ jobs:
     - name: Run test for build output
       run: python src/test.py
 
+    - name: Build Docker Image
+      run: docker build -t my-image .
+
+    - name: Run Docker Image and Test Docker Container
+      run: |
+        output=$(docker run --rm my-image)
+        echo $output
+        if [[ "$output" != "6" ]]; then
+          exit 1
+        fi
+
+
+
+
+
 
 
 
